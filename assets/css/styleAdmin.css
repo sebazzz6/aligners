@@ -1,0 +1,16 @@
+@font-face {
+    font-family: 'roboto';
+    src: url('../font/Roboto-Regular.ttf') format('truetype');
+  }  
+
+html{
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Nunito';
+}
+
+.logo{
+    margin: 0px;
+    padding: 0px;
+    width: 200px;
+}
