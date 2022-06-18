@@ -8,13 +8,16 @@
       $result = mysqli_query($db,$sql);
       $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
       $active = $row['activo'];
+      $perfil = $row['perfil'];
       $count = mysqli_num_rows($result);
       // If result matched $myusername and $mypassword, table row must be 1 row
       if($count == 1) {
          //session_register("myusername");
          $_SESSION['login_user'] = $myusername;
-         
-         header("location: main.php");
+         if($perfil == 1){
+            header("location:_admin/main.php"); 
+         }
+         //header("location: main.php");
       }else {
          $error = "Usuario o Pass erroneos";
       }
