@@ -1,8 +1,30 @@
+<?php
+   include("./db/db.php");
+   session_start();
+   if($_SERVER["REQUEST_METHOD"] == "POST") {
+      $myusername = mysqli_real_escape_string($db,$_POST['username']);
+      $mypassword = mysqli_real_escape_string($db,$_POST['password']); 
+      $sql = "SELECT * FROM tblUsuarios WHERE usuario = '$myusername' and pass = '$mypassword'";
+      $result = mysqli_query($db,$sql);
+      $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+      $active = $row['activo'];
+      $count = mysqli_num_rows($result);
+      // If result matched $myusername and $mypassword, table row must be 1 row
+      if($count == 1) {
+         //session_register("myusername");
+         $_SESSION['login_user'] = $myusername;
+         
+         header("location: main.php");
+      }else {
+         $error = "Usuario o Pass erroneos";
+      }
+   }
+?>
 <html>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <link rel="icon" href="favicon.ico">
+        <link rel="icon" href="assets/favicon.ico">
         <title>Bienvenidos</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
