@@ -11,10 +11,10 @@
         <meta name="author" content="">
         <title>Innova4D - Norte</title>
         <!-- Custom fonts for this template-->
-        <link href="./assets/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+        <link href="../assets/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
         <!-- Custom styles for this template-->
-        <link href="./assets/css/sb-admin-2.css" rel="stylesheet">
+        <link href="../assets/css/sb-admin-2.css" rel="stylesheet">
     </head>
     
     <body id="page-top" onload="inicial();">
@@ -22,7 +22,7 @@
             <!-- Sidebar -->
             <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
                 <!-- Sidebar - Brand -->
-                <img src="./assets/img/logo.png" alt="" width="100%" >
+                <img src="../assets/img/logo_blank.png" alt="" width="100%" >
                 
                 <!-- Divider -->
                 <hr class="sidebar-divider my-0">
@@ -132,15 +132,15 @@
 </div>
     </body>
     <!-- Bootstrap core JavaScript-->
-    <script src="./assets/jquery/jquery.min.js"></script>
-    <script src="./assets/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/jquery/jquery.min.js"></script>
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="./assets/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../assets/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="./assets/js/sb-admin-2.min.js"></script>
-    <script src="./assets/js/funciones.js"></script>
+    <script src="../assets/js/sb-admin-2.min.js"></script>
+    <script src="../assets/js/funciones.js"></script>
 
     <!-- Page level plugins 
     <script src="./assets/chart.js/Chart.min.js"></script>
