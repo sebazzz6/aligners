@@ -83,13 +83,18 @@
                             </tr>
                             <tr></tr>
                             <tr>
-                                <td>Comuna</td>
-                                <td><div id="listaComuna"></div></td>
+                                <td>Región</td>
+                                <td><div id="listaRegiones"></div></td>
                             </tr>
                             <tr></tr>
                             <tr>
                                 <td>Ciudad</td>
                                 <td><div id="listaCiudad"></div></td>
+                            </tr>
+                            <tr></tr>
+                            <tr>
+                                <td>Comuna</td>
+                                <td><div id="listaComuna"></div></td>
                             </tr>
                             <tr></tr>
                             <tr>
@@ -110,7 +115,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-primary" onclick="agregarClinicas();">Guardar</button>
+                        <button type="button" class="btn btn-primary" onclick="addDBClinicas();opciones(1);">Guardar</button>
                     </div>
                 </div>
             </div>

@@ -21,6 +21,26 @@
       }else {
          $error = "Usuario o Pass erroneos";
       }
+      if($count == 1) {
+         //session_register("myusername");
+         $_SESSION['login_user'] = $myusername;
+         if($perfil == 2){
+            header("location:_lab/main.php"); 
+         }
+         //header("location: main.php");
+      }else {
+         $error = "Usuario o Pass erroneos";
+      }
+      if($count == 1) {
+         //session_register("myusername");
+         $_SESSION['login_user'] = $myusername;
+         if($perfil == 5){
+            header("location:_client/index.html"); 
+         }
+         //header("location: main.php");
+      }else {
+         $error = "Usuario o Pass erroneos";
+      }
    }
 ?>
 <html>
