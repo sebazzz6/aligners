@@ -12,6 +12,6 @@
 		echo "Error al conectar la base de datos {$conexion->connect_errno}";
 	}
 	// Url donde estara el proyecto, debe terminar con un "/" al final
-	$base_url="http://localhost/webcalendar/";
+	$base_url="http://localhost/aligners/_client/";
 ?>
 

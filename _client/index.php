@@ -37,7 +37,7 @@
         // Ejecutamos nuestra sentencia sql
         $conexion->query($query)or die('<script type="text/javascript">alert("Horario No Disponible ")</script>');
 
-        header("Location:./");        
+        header("Location:");        
 
 
         // Obtenemos el ultimo id insetado
@@ -68,21 +68,20 @@
     <link rel="icon" href="https://getbootstrap.com/docs/4.0/assets/img/favicons/favicon.ico">
     <title>Bienvenidos</title>
     <!-- Bootstrap core CSS -->
-    <script src="./js/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <link rel="stylesheet" href="./css/calendar.css">
     <!-- Custom styles for this template -->
     <link href="./assets/css/style.css" rel="stylesheet">
-    <link href="./css/font-awesome.min.css" rel="stylesheet">
-    <script type="text/javascript" src="./js/es-ES.js"></script>
-    <script src="./js/moment.js"></script>
-    <script src="./js/bootstrap-datetimepicker.js"></script>
-    <link rel="stylesheet" href="./css/bootstrap-datetimepicker.min.css" />
+    <link rel="stylesheet" href="./assets/css/fullcalendar.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="./assets/js/moment.js"></script>
+    <script src="./assets/js/fullcalendar.js"></script>
   </head>
   <body class="bg-light lang-es">
     <nav class="navbar navbar-expand-md fixed-top navbar-dark navbg">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Logo</a>
+        <a class="navbar-brand" href="#"><img src="../assets/img/logo_blank.png" width="200" style="margin:0;border-radius:10px;"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -100,7 +99,7 @@
         </form>
       </div>
     </nav>
-    <main role="main" class="container">
+    <main role="main" class="container mt-5">
       <div class="d-flex align-items-center p-3 my-3 text-white-50 navbg rounded box-shadow">
         <div class="lh-100">
           <h4 class="mb-0 text-white lh-100">Ingresar Nuevo Trabajo</h4>
@@ -168,185 +167,6 @@
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>    
-    <script src="./js/bootstrap.min.js"></script>
-    <script src="./assets/js/offcanvas.js"></script>
     <script src="./assets/js/app.js"></script>
-    <script src="./js/underscore-min.js"></script>
-    <script src="./js/calendar.js"></script>
-    <script type="text/javascript">
-        (function($){
-                //creamos la fecha actual
-                var date = new Date();
-                var yyyy = date.getFullYear().toString();
-                var mm = (date.getMonth()+1).toString().length == 1 ? "0"+(date.getMonth()+1).toString() : (date.getMonth()+1).toString();
-                var dd  = (date.getDate()).toString().length == 1 ? "0"+(date.getDate()).toString() : (date.getDate()).toString();
-
-                //establecemos los valores del calendario
-                var options = {
-
-                    // definimos que los agenda se mostraran en ventana modal
-                    modal: '#events-modal', 
-
-                        // dentro de un iframe
-                        modal_type:'iframe',    
-
-                        //obtenemos los agenda de la base de datos
-                        events_source: 'obtener_eventos.php', 
-
-                        // mostramos el calendario en el mes
-                        view: 'month',             
-
-                        // y dia actual
-                        day: yyyy+"-"+mm+"-"+dd,   
-
-
-                        // definimos el idioma por defecto
-                        language: 'es-ES', 
-
-                        //Template de nuestro calendario
-                        tmpl_path: 'tmpls/', 
-                        tmpl_cache: false,
-
-
-                        // Hora de inicio
-                        time_start: '08:00', 
-
-                        // y Hora final de cada dia
-                        time_end: '22:00',   
-
-                        // intervalo de tiempo entre las hora, en este caso son 30 minutos
-                        time_split: '30',    
-
-                        // Definimos un ancho del 100% a nuestro calendario
-                        width: '100%', 
-
-                        onAfterEventsLoad: function(events)
-                        {
-                            if(!events)
-                            {
-                                return;
-                            }
-                            var list = $('#eventlist');
-                            list.html('');
-
-                            $.each(events, function(key, val)
-                            {
-                                $(document.createElement('li'))
-                                .html('<a href="' + val.url + '">' + val.title + '</a>')
-                                .appendTo(list);
-                            });
-                        },
-                        onAfterViewLoad: function(view)
-                        {
-                            $('#page-header').text(this.getTitle());
-                            $('.btn-group button').removeClass('active');
-                            $('button[data-calendar-view="' + view + '"]').addClass('active');
-                        },
-                        classes: {
-                            months: {
-                                general: 'label'
-                            }
-                        }
-                    };
-
-
-                // id del div donde se mostrara el calendario
-                var calendar = $('#calendar').calendar(options); 
-
-                $('.btn-group button[data-calendar-nav]').each(function()
-                {
-                    var $this = $(this);
-                    $this.click(function()
-                    {
-                        calendar.navigate($this.data('calendar-nav'));
-                    });
-                });
-
-                $('.btn-group button[data-calendar-view]').each(function()
-                {
-                    var $this = $(this);
-                    $this.click(function()
-                    {
-                        calendar.view($this.data('calendar-view'));
-                    });
-                });
-
-                $('#first_day').change(function()
-                {
-                    var value = $(this).val();
-                    value = value.length ? parseInt(value) : null;
-                    calendar.setOptions({first_day: value});
-                    calendar.view();
-                });
-            }(jQuery));
-        </script>
-
-        <div class="modal fade" id="add_evento" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel">Agregar nuevo evento</h4>
-            </div>
-            <div class="modal-body">
-                <form action="" method="post">
-                    <label for="from">Inicio</label>
-                    <div class='input-group date' id='from'>
-                        <input type='text' id="from" name="from" class="form-control" readonly />
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
-                    </div>
-
-                    <br>
-
-                    <label for="to">Final</label>
-                    <div class='input-group date' id='to'>
-                        <input type='text' name="to" id="to" class="form-control" readonly />
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
-                    </div>
-
-                    <br>
-
-                    <label for="tipo">Tipo de evento</label>
-                    <select class="form-control" name="class" id="tipo">
-                        <option value="event-info">Informacion</option>
-                        <option value="event-success">Exito</option>
-                        <option value="event-important">Importantante</option>
-                        <option value="event-warning">Advertencia</option>
-                        <option value="event-special">Especial</option>
-                    </select>
-
-                    <br>
-
-
-                    <label for="title">Título</label>
-                    <input type="text" required autocomplete="off" name="title" class="form-control" id="title" placeholder="Introduce un título">
-
-                    <br>
-
-
-                    <label for="body">Evento</label>
-                    <textarea id="body" name="event" required class="form-control" rows="3"></textarea>
-
-                    <script type="text/javascript">
-                        $(function () {
-                            $('#from').datetimepicker({
-                                language: 'es',
-                                minDate: new Date()
-                            });
-                            $('#to').datetimepicker({
-                                language: 'es',
-                                minDate: new Date()
-                            });
-
-                        });
-                    </script>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
-                  <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Agregar</button>
-              </form>
-          </div>
-      </div>
-  </div>
-</div>
   </body>
 </html>

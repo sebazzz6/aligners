@@ -69,7 +69,7 @@ if (isset($_POST['eliminar_evento']))
 <head>
 	<meta charset="UTF-8">
 	<title><?=$titulo?></title>
-          <link rel="stylesheet" type="text/css" href="<?=$base_url?>css/bootstrap.min.css">
+          <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
 </head>
 <body>
 	 <h3><?=$titulo?></h3>
