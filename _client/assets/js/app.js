@@ -107,45 +107,102 @@ function opciones(op){
     if(op == 3){
         document.getElementById("mainPanel").innerHTML = '';
         cadena += '<div class="container">'+
-                        '<div class="row">'+
-                            '<div class="pull-left form-inline"><br>'+
-                                '<div class="btn-group">'+
-                                    '<button class="btn btn-primary" data-calendar-nav="prev"><i class="fa fa-arrow-left"></i></button>'+
-                                    '<button class="btn" data-calendar-nav="today">Hoy</button>'+
-                                    '<button class="btn btn-primary" data-calendar-nav="next"><i class="fa fa-arrow-right"></i></button>'+
-                                '</div>'+
-                                '<div class="btn-group">'+
-                                    '<button class="btn btn-warning" data-calendar-view="year">Año</button>'+
-                                    '<button class="btn btn-warning active" data-calendar-view="month">Mes</button>'+
-                                    '<button class="btn btn-warning" data-calendar-view="week">Semana</button>'+
-                                    '<button class="btn btn-warning" data-calendar-view="day">Dia</button>'+
-                                '</div>'+
-                            '</div>'+
-                            '<div class="pull-right form-inline"><br>'+
-                            '<button class="btn btn-info" data-toggle"modal" data-target="#add_evento">Añadir Evento</button>'+
-                        '</div>'+
-                    '</div>'+
-                    '<br><br><br>'+
-                    '<div class="row">'+
-                        '<div id="calendar"></div> <!-- Aqui se mostrara nuestro calendario -->'+
-                    '</div>'+
-                    '<div class="modal fade" id="events-modal">'+
-                        '<div class="modal-dialog">'+
-                            '<div class="modal-content">'+
-                                '<div class="modal-header">'+
-                                    '<a href="#" data-dismiss="modal" style="float: right;"> <i class="glyphicon glyphicon-remove "></i> </a>'+
-                                    '<br>'+
-                                '</div>'+
-                                '<div class="modal-body" style="height: 400px">'+
-                                    '<p>One fine body&hellip;</p>'+
-                                '</div>'+
-                            '</div><!-- /.modal-content -->'+
-                        '</div><!-- /.modal-dialog -->'+
-                    '</div><!-- /.modal -->'+
-                '</div>';
-                document.getElementById("mainPanel").innerHTML = cadena;
+                    '<div id="calendar"></div>'+
+                    '</div>';
+        document.getElementById("mainPanel").innerHTML = cadena;
+        calendario();
     }
     if(op == 4){
         document.getElementById("mainPanel").innerHTML = '';
     }
+}
+
+
+function calendario(){
+    $(document).ready(function() {
+        var calendar = $('#calendar').fullCalendar({
+         editable:true,
+         header:{
+          left:'prev,next today',
+          center:'title',
+          right:'month,agendaWeek,agendaDay'
+         },
+         events: 'load.php',
+         selectable:true,
+         selectHelper:true,
+         select: function(start, end, allDay)
+         {
+          var title = prompt("Desea Agendar para este dia?");
+          if(title)
+          {
+           var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
+           var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm:ss");
+           $.ajax({
+            url:"insert.php",
+            type:"POST",
+            data:{title:title, start:start, end:end},
+            success:function()
+            {
+             calendar.fullCalendar('refetchEvents');
+             alert("Added Successfully");
+            }
+           })
+          }
+         },
+         editable:true,
+         eventResize:function(event)
+         {
+          var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
+          var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD HH:mm:ss");
+          var title = event.title;
+          var id = event.id;
+          $.ajax({
+           url:"update.php",
+           type:"POST",
+           data:{title:title, start:start, end:end, id:id},
+           success:function(){
+            calendar.fullCalendar('refetchEvents');
+            alert('Event Update');
+           }
+          })
+         },
+     
+         eventDrop:function(event)
+         {
+          var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
+          var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD HH:mm:ss");
+          var title = event.title;
+          var id = event.id;
+          $.ajax({
+           url:"update.php",
+           type:"POST",
+           data:{title:title, start:start, end:end, id:id},
+           success:function()
+           {
+            calendar.fullCalendar('refetchEvents');
+            alert("Event Updated");
+           }
+          });
+         },
+     
+         eventClick:function(event)
+         {
+          if(confirm("Are you sure you want to remove it?"))
+          {
+           var id = event.id;
+           $.ajax({
+            url:"delete.php",
+            type:"POST",
+            data:{id:id},
+            success:function()
+            {
+             calendar.fullCalendar('refetchEvents');
+             alert("Event Removed");
+            }
+           })
+          }
+         },
+     
+        });
+       });
 }
