@@ -79,35 +79,21 @@
     <script src="./assets/js/fullcalendar.js"></script>
   </head>
   <body class="bg-light lang-es">
-    <nav class="navbar navbar-expand-md fixed-top navbar-dark navbg">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#"><img src="../assets/img/logo_blank.png" width="200" style="margin:0;border-radius:10px;"></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="index.php">Inicio</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#" onclick="opciones(4);">Mis trabajos</a>
-          </li>
-        </ul>
-        <form class="d-flex" role="search">
-          <button class="btn btn-primary">Salir</button>
-        </form>
-      </div>
-    </nav>
-    <main role="main" class="container mt-5">
-      <div class="d-flex align-items-center p-3 my-3 text-white-50 navbg rounded box-shadow">
+    <div class="sidebar bg-gradient-primary">
+      <img src="../assets/img/logo_blank.png" alt="" width="220">
+      <a href="index.php">Nuevo</a>
+      <a href="#">Mis Pacientes</a>
+      <a href="#">Mis Datos</a>
+    </div>
+    <main role="main" class="content container mt-5">
+      <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-gradient-primary rounded box-shadow">
         <div class="lh-100">
           <h4 class="mb-0 text-white lh-100">Ingresar Nuevo Trabajo</h4>
           <small>Ingresa una nueva Orden de Trabajo</small>
         </div>
       </div>
 
-      <div class="media text-muted pt-3" id="mainPanel">
+      <div class="media text-muted pt-3 text-center" id="mainPanel">
         <div class="container">
           <div class="row">
             <div class="col-sm-12 col-lg-4 d-flex justify-content-center">

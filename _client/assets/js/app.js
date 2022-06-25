@@ -2,8 +2,65 @@ function opciones(op){
     var cadena = '';
     if(op == 1){
         document.getElementById("mainPanel").innerHTML = '';
-        cadena += '<div class="accordion" id="accordionExample">'+
-                    '<div class="accordion-item">'+
+        cadena += '<h2>Datos de Paciente</h2>'+
+        '<table class="table">'+
+        '<tr>'+
+            '<td>Nombres:</td><td><input></td><td>Apellidos:</td><td><input></td>'+
+        '</tr><tr>'+
+            '<td>Rut:</td><td><input></td><td>Fecha Nacimiento:</td><td><input type="date"></td>'+
+        '</tr></table>'+
+        '<table class="table">'+
+        '<tr>'+
+            '<td colspan="2">Selecccione la(s) Arcada(s) para alineador(es):</td><td><input type="radio" id="sup" name="arcada"><label class="mx-2" for="sup">Superior</label></td><td><input type="radio" id="inf" name="arcada"><label class="mx-2" for="inf">Inferior</label></td><td><input type="radio" id="mor" name="arcada"><label class="mx-2" for="inf">Ambas</label></td>'+
+        '</tr><table>'+
+        '<h2>Orden de Alineador</h2>'+
+        '<h4>Seleccione las indicaciones terapeuticas por arcada</h4>'+
+        '<table class="table">'+
+        '<tr>'+
+            '<td align="center">Máxilar Superior</td><td></td><td align="center">Mandíbula</td><td></td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td><input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">&nbsp;&nbsp;Alineación</td><td></td>'+
+            '<td><input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">&nbsp;&nbsp;Alineación</td><td></td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td><input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">&nbsp;&nbsp;Nivelación</td><td></td>'+
+            '<td><input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">&nbsp;&nbsp;Nivelación</td><td></td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td><input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">&nbsp;&nbsp;Stripping entre dientes</td><td><input></td>'+
+            '<td><input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">&nbsp;&nbsp;Stripping entre dientes</td><td><input></td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td><input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">&nbsp;&nbsp;Expansión</td><td></td>'+
+            '<td><input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">&nbsp;&nbsp;Expansión</td><td></td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td><input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">&nbsp;&nbsp;RetroInclinar o Retruir dientes</td><td><input></td>'+
+            '<td><input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">&nbsp;&nbsp;RetroInclinar o Retruir dientes</td><td><input></td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td><input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">&nbsp;&nbsp;ProInclinar o Protruir dientes</td><td><input></td>'+
+            '<td><input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">&nbsp;&nbsp;ProInclinar o Protruir dientes</td><td><input></td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td><input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">&nbsp;&nbsp;Extruir dientes</td><td><input></td>'+
+            '<td><input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">&nbsp;&nbsp;Extruir dientes</td><td><input></td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td><input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">&nbsp;&nbsp;Intruir dientes</td><td><input></td>'+
+            '<td><input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">&nbsp;&nbsp;Intruir dientes</td><td><input></td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td><input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">&nbsp;&nbsp;Cerrar Espacio entre dientes</td><td><input></td>'+
+            '<td><input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">&nbsp;&nbsp;Cerrar Espacio entre dientes</td><td><input></td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td><input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">&nbsp;&nbsp;Cerrar Línea Media</td><td><input></td>'+
+            '<td><input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">&nbsp;&nbsp;Cerrar Línea Media</td><td><input></td>'+
+        '</tr>'+
+        '</table>';
+                    /*'<div class="accordion-item">'+
                         '<h2 class="accordion-header" id="headingOne">'+
                             '<button class="accordion-button membrete-acordeon" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">'+
                                 'Datos de Paciente'+
@@ -97,7 +154,7 @@ function opciones(op){
                             '</div>'+
                         '</div>'+
                     '</div>'+
-                '</div>';
+                '</div>';*/
             cadena += '<div><button class="btn btn-danger">Enviar</button>11</div>';
             document.getElementById("mainPanel").innerHTML = cadena;
     }
