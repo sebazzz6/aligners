@@ -1,5 +1,5 @@
 <?php
-    include('../db/db.php');
+    include('../../db/db.php');
     $clinica = $_GET['clinica'];
     $direccion = $_GET['direccion'];
     $comuna = $_GET['comuna'];
