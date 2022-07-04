@@ -1,22 +1,12 @@
 <?php
     include('../db/db.php');
-    $sql = mysqli_query($db,"select * from tblClientes");
-    $cadena = '<table class="table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Clinica</th>
-                        <th>Dirección</th>
-                        <th>Gerente</th>
-                        <th>Suscripción</th>
-                    </tr>
-                </thead>
-                <tbody>';
+    $cadena = array();
+    $sql = mysqli_query($db,"select * from tblclientes");
     if(!empty($sql)) {
         while ($row = mysqli_fetch_array($sql)) {
-            $cadena = $cadena."<tr><td>".$row['id']."</td><td>".$row['Clinica']."</td><td></td><td>".$row['Direccion']."</td><td>".$row['gerente']."</td><td>".$row['activo']."</td></tr>";
+            $cadena[] = array("id"=>$row['id'], "clinica"=>$row['Clinica'], "nombres"=>$row['nombres'], "apellidos"=>$row['apellidos'], "usuario"=>$row['usuario'], "pass"=>$row['pass'], "cargo"=>$row['cargo'], "correo"=>$row['correo'], "activo"=>$row['activo']);
         }
     }
-    $cadena = $cadena."</tbody></table>";
-    echo $cadena;
+    header('Content-type: application/json; charset=utf-8');
+    echo json_encode($cadena);
 ?>

@@ -37,7 +37,7 @@ function listaUsuarios(){
         success: function (results) {
             retorno = '<table class="table"><tr><th>ID</th><th>Nombres</th><th>Apellidos</th><th>Usuario</th><th>Correo</th><th>Perfil</th><th>Acciones</th></tr>';
             for(var a of results.data){
-                retorno += '<tr><td>'+a.id+'</td><td>'+a.nombres+'</td><td>'+a.apellidos+'</td><td>'+a.usuario+'</td><td>'+a.correo+'</td><td>'+perfiles(a.perfil)+'</td><td><button id="modificarUsuario" class="btn btn-primary mx-1">Modificar</button><button id="eliminarUsuario" class="btn btn-danger mx-1">Eliminar</button></div></td></tr>'
+                retorno += '<tr><td>'+a.id+'</td><td>'+a.nombres+'</td><td>'+a.apellidos+'</td><td>'+a.usuario+'</td><td>'+a.correo+'</td><td>'+perfiles(a.perfil)+'</td><td><button id="modificarUsuario" class="btn btn-primary mx-1">Modificar</button><button id="eliminarUsuario" onclick="delUsuario('+a.id+');"class="btn btn-danger mx-1">Eliminar</button></div></td></tr>'
             }
             retorno += '</table>';
         }
@@ -51,12 +51,12 @@ function listaClientes(){
         type: "POST",
         async:false,
         dataType: "json",
-        url: "../ajax/listaClientesUsuarios.php",
+        url: "../ajax/listaClientes.php",
         success: function (results) {
-            retorno = '<table class="table"><tr><th>ID</th><th>Nombres</th><th>Apellidos</th><th>Cargo</th><th>Clínica</th><th>Activo</th><th>Correo</th></tr>';
+            retorno = '<table class="table"><tr><th>ID</th><th>Nombres</th><th>Apellidos</th><th>Cargo</th><th>Clínica</th><th>Activo</th><th>Correo</th><th>Acciones</th></tr>';
             console.log(results);
             for(var a of results){
-                retorno += '<tr><td>'+a.id+'</td><td>'+a.nombres+'</td><td>'+a.apellidos+'</td><td>'+a.cargo+'</td><td>'+a.clinica+'</td><td>'+a.activo+'</td><td>'+a.correo+'</td><td><button id="modificarClinica" class="btn btn-primary mx-1">Modificar</button><button id="eliminarClinica" class="btn btn-danger mx-1">Eliminar</button></div></td></tr>';
+                retorno += '<tr><td>'+a.id+'</td><td>'+a.nombres+'</td><td>'+a.apellidos+'</td><td>'+cargo(a.cargo)+'</td><td>'+clinica(a.clinica)+'</td><td>'+activo(a.activo)+'</td><td>'+a.correo+'</td><td><button id="modificarClinica" class="btn btn-primary mx-1">Modificar</button><button id="eliminarClinica" onclick="delCliente('+a.id+');" class="btn btn-danger mx-1">Eliminar</button></div></td></tr>';
             }  
             retorno += '</table>';
         }
@@ -72,10 +72,10 @@ function listaClinicas(){
         dataType: "json",
         url: "../ajax/listaClinicas.php",
         success: function (results) {
-            retorno = '<table class="table"><tr><th>ID</th><th>Clínica</th><th>Dirección</th><th>Comuna</th><th>Ciudad</th><th>Pais</th><th>Metodo Pago</th><th>Teléfono</th><th>Estado</th></tr>';
+            retorno = '<table class="table"><tr><th>ID</th><th>Clínica</th><th>Dirección</th><th>Comuna</th><th>Ciudad</th><th>Pais</th><th>Metodo Pago</th><th>Teléfono</th><th>Estado</th><th>Acciones</th></tr>';
             console.log(results);
             for(var a of results){
-                retorno += '<tr><td>'+a.id+'</td><td>'+a.clinica+'</td><td>'+a.direccion+'</td><td>'+a.comuna+'</td><td>'+a.ciudad+'</td><td>'+a.pais+'</td><td>'+a.metodoPago+'</td><td>'+a.telefono+'</td><td>'+a.activo+'</td><td><button id="modificarClinica" class="btn btn-primary mx-1">Modificar</button><button id="eliminarClinica" class="btn btn-danger mx-1">Eliminar</button></div></td></tr>';
+                retorno += '<tr><td>'+a.id+'</td><td>'+a.clinica+'</td><td>'+a.direccion+'</td><td>'+comuna(a.comuna)+'</td><td>'+ciudad(a.ciudad)+'</td><td>'+pais(a.pais)+'</td><td>'+mp(a.metodoPago)+'</td><td>'+a.telefono+'</td><td>'+activo(a.activo)+'</td><td><button id="modificarClinica" class="btn btn-primary mx-1">Modificar</button><button id="eliminarClinica" class="btn btn-danger mx-1" onclick="delClinica('+a.id+');">Eliminar</button></div></td></tr>';
             }  
             retorno += '</table>';
         }
@@ -94,7 +94,7 @@ function listaPerfiles(){
             retorno = '<table class="table"><tr><th>ID</th><th>Perfil</th><th>Activo</th><th>Acciones</th></tr>';
             console.log(results);
             for(var a of results){
-                retorno += '<tr><td>'+a.id+'</td><td>'+a.nombre+'</td><td>'+a.activo+'</td><td><button id="modificarPerfil" class="btn btn-primary mx-1">Modificar</button><button id="eliminarPerfil" class="btn btn-danger mx-1">Eliminar</button></div></td></tr>';
+                retorno += '<tr><td>'+a.id+'</td><td>'+a.nombre+'</td><td>'+activo(a.activo)+'</td><td><button id="modificarPerfil" class="btn btn-primary mx-1">Modificar</button><button id="eliminarPerfil" onclick="delPerfil('+a.id+');" class="btn btn-danger mx-1">Eliminar</button></div></td></tr>';
             }  
             retorno += '</table>';
         }
@@ -116,6 +116,88 @@ function perfiles(op){
     console.log(op + ' = '+ retorno);
     return retorno;
 }
+
+function cargo(op){
+    var retorno = '';
+    $.ajax({ // Send it off for prcessing
+        type: "GET",
+        async:false,
+        //dataType: "json",
+        url: "../ajax/perfil.php?id="+op,
+        success: function (results) {
+            retorno = results;
+        }
+    });
+    console.log(op + ' = '+ retorno);
+    return retorno;
+}
+
+function clinica(op){
+    var retorno = '';
+    $.ajax({ // Send it off for prcessing
+        type: "GET",
+        async:false,
+        //dataType: "json",
+        url: "../ajax/clinica.php?id="+op,
+        success: function (results) {
+            retorno = results;
+        }
+    });
+    console.log(op + ' = '+ retorno);
+    return retorno;
+}
+
+function mp(op){
+    var retorno = '';
+    $.ajax({ // Send it off for prcessing
+        type: "GET",
+        async:false,
+        //dataType: "json",
+        url: "../ajax/mp.php?id="+op,
+        success: function (results) {
+            retorno = results;
+        }
+    });
+    console.log(op + ' = '+ retorno);
+    return retorno;
+}
+
+function activo(op){
+    if(op == 1){
+        return "Activo";
+    }else{
+        return "Inactivo";
+    }
+}
+
+function pais(op){
+    if(op == 1){
+        return "Chile";
+    }else{
+        return "No Seleccionado";
+    }
+}
+
+function comuna(op){
+    if(op == 1){
+        return "Las Condes";
+    }if(op == 2){
+        return "Santiago";
+    }else{
+        return "No Seleccionado";
+    }
+}
+
+function ciudad(op){
+    if(op == 1){
+        return "Santiago";
+    }else{
+        return "No Seleccionado";
+    }
+}
+
+
+
 
 
 //Funciones formulario Agregar datos
@@ -141,6 +223,7 @@ function formAgregarCliente(){
                 '<tr><td>Cargo</td><td>'+selectCargo()+'</td></tr>'+
                 '<tr><td>Clínica</td><td>'+selectClinica()+'</td></tr>'+
                 '<tr><td>Correo</td><td><input id="inCorreoCliente"></td></tr>'+
+                '<tr><td>Usuario</td><td><input id="inUsuarioCliente"></td></tr>'+
                 '<tr><td>Pass Inicial</td><td><input id="inPassCliente"></td></tr>'+
                 '</table>';
     document.getElementById("addCliente").innerHTML = cadena;
@@ -154,7 +237,7 @@ function formAgregarClinica(){
                 '<tr><td>Comuna</td><td>'+selectComuna()+'</td></tr>'+
                 '<tr><td>Ciudad</td><td>'+selectCiudad()+'</td></tr>'+
                 '<tr><td>Pais</td><td>'+selectPais()+'</td></tr>'+
-                '<tr><td>Método Pago</td><td><input id="inMPClinica"></td></tr>'+
+                '<tr><td>Método Pago</td><td>'+selectMP()+'</td></tr>'+
                 '<tr><td>Teléfono</td><td><input id="inTelefonoClinica"></td></tr>'+
                 '</table>';
     document.getElementById("addClinica").innerHTML = cadena;
@@ -254,7 +337,24 @@ function selectPais(){
     return retorno;
 }
 
-
+function selectMP(){
+    var retorno = '';
+    $.ajax({ // Send it off for prcessing
+        type: "POST",
+        async:false,
+        dataType: "json",
+        url: "../ajax/listaMP.php",
+        success: function (results) {
+            retorno = '<select id="selMP">';
+            console.log(results);
+            for(var a of results){
+                retorno += '<option value="'+a.id+'">'+a.nombre+'</option>';
+            }  
+            retorno += '</select>';
+        }
+    });
+    return retorno;
+}
 //Funciones agregar a base de datos
 
 function addDBClinicas(){
@@ -264,7 +364,7 @@ function addDBClinicas(){
     var comuna = document.getElementById("selComuna").value;
     var ciudad = document.getElementById("selCiudad").value;
     var pais = document.getElementById("selPais").value;
-    var mp = document.getElementById("inMPClinica").value;
+    var mp = document.getElementById("selMP").value;
     var activo = "1";
     console.log(clinica + "  " + direccion + "  " + telefono + "  " + comuna + "  " + ciudad + "  " + mp + "  " + activo);
     console.log("../ajax/add/addClinica.php?clinica="+clinica+"&direccion="+direccion+"&telefono="+telefono+"&comuna="+comuna+"&ciudad="+ciudad+"&metodoPago="+mp+"&activo="+activo+"&pais="+pais);
@@ -286,8 +386,6 @@ function addDBUsuario(){
     var correo = document.getElementById("inCorreoUsuario").value;
     var perfil = document.getElementById("selPerfil").value;
     var activo = "1";
-    //console.log(clinica + "  " + direccion + "  " + telefono + "  " + comuna + "  " + ciudad + "  " + mp + "  " + activo);
-    //console.log("../ajax/add/addClinica.php?clinica="+clinica+"&direccion="+direccion+"&telefono="+telefono+"&comuna="+comuna+"&ciudad="+ciudad+"&metodoPago="+mp+"&activo="+activo+"&pais="+pais);
     $.ajax({ // Send it off for prcessing
         type: "GET",
         url: "../ajax/add/addUsuario.php?nombres="+nombres+"&apellidos="+apellidos+"&usuario="+usuario+"&pass="+pass+"&correo="+correo+"&perfil="+perfil+"&activo="+activo,
@@ -295,5 +393,70 @@ function addDBUsuario(){
             console.log(results);
         }
     });
+    setTimeout(function(){ opciones(1); }, 1000);
+}
+
+function addDBCliente(){
+    var clinica = document.getElementById("selClinica").value;
+    var activo = "1";
+    var nombres = document.getElementById("inNombreCliente").value;
+    var apellidos = document.getElementById("inApellidoCliente").value;
+    var usuario = document.getElementById("inApellidoCliente").value;
+    var pass = document.getElementById("inPassCliente").value;
+    var correo = document.getElementById("inCorreoCliente").value;
+    var cargo = document.getElementById("selCargo").value;
+    $.ajax({ // Send it off for prcessing
+        type: "GET",
+        url: "../ajax/add/addCliente.php?clinica="+clinica+"&nombres="+nombres+"&apellidos="+apellidos+"&usuario="+usuario+"&pass="+pass+"&correo="+correo+"&activo="+activo+"&cargo="+cargo,
+        success: function (results) {
+            console.log(results);
+        }
+    });
+    setTimeout(function(){ opciones(2); }, 1000);
+}
+
+//Funciones delete
+
+function delClinica(id){
+    $.ajax({ // Send it off for prcessing
+        type: "GET",
+        url: "../ajax/del/delClinica.php?id="+id,
+        success: function (results) {
+            console.log(results);
+        }
+    });
     setTimeout(function(){ opciones(3); }, 1000);
+}
+
+function delUsuario(id){
+    $.ajax({ // Send it off for prcessing
+        type: "GET",
+        url: "../ajax/del/delUsuario.php?id="+id,
+        success: function (results) {
+            console.log(results);
+        }
+    });
+    setTimeout(function(){ opciones(1); }, 1000);
+}
+
+function delPerfil(id){
+    $.ajax({ // Send it off for prcessing
+        type: "GET",
+        url: "../ajax/del/delPerfil.php?id="+id,
+        success: function (results) {
+            console.log(results);
+        }
+    });
+    setTimeout(function(){ opciones(1); }, 1000);
+}
+
+function delCliente(id){
+    $.ajax({ // Send it off for prcessing
+        type: "GET",
+        url: "../ajax/del/delCliente.php?id="+id,
+        success: function (results) {
+            console.log(results);
+        }
+    });
+    setTimeout(function(){ opciones(1); }, 1000);
 }
