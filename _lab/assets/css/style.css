@@ -215,10 +215,10 @@ main.content {
   .sidebar {
     width: 100%;
     height: auto;
-    margin-left: 0px;
+    position: relative;
   }
   .sidebar a {float: left;}
-  main.content {margin-left: 0;}
+  div.content {margin-left: 0;}
 }
 
 @media screen and (max-width: 400px) {
