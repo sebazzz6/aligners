@@ -279,7 +279,8 @@ function grabarOT(){
             if(results == 'ok'){
                 var opcion = confirm("Registro guardado Correctamente");
                 if(opcion == true){
-                    metodoPago();
+                    menu(1);
+                    //metodoPago();
                 }
             }else{
                 alert("No registrado....");
@@ -316,4 +317,40 @@ function grabarOT(){
 
 function metodoPago(){
     console.log("Metodo de pago");
+}
+
+
+function menu(op){
+    var cadena = '';
+    if(op ==1){
+        document.getElementById("mainPanel").innerHTML = '';
+        cadena += '<h3>Mis Ordenes</h3>';
+        cadena += misOT();
+        document.getElementById("mainPanel").innerHTML = cadena;
+    }
+}
+
+function misOT(){
+    var retorno = '';
+    $.ajax({ // Send it off for prcessing
+        type: "POST",
+        async:false,
+        dataType: "json",
+        url: "../ajax/ot/misOT.php",
+        success: function (results) {
+            retorno = '<table class="table"><tr><th>OT</th><th>Fecha Ingreso</th><th>Paciente</th><th>Estado</th><th>Acciones</th></tr>';
+            console.log(results);
+            for(var a of results){
+                retorno += '<tr><td>'+a.id+'</td><td>'+a.fechaIngreso+'</td><td>'+a.nombrePac+' '+a.apellidoPac+'</td><td>'+estadosOT(a.estado)+'</td><td><button id="modificarOT" class="btn btn-primary mx-1">Ver</button><button id="modificarOT" class="btn btn-primary mx-1">Modificar</button><button id="eliminarOT" onclick="delOT('+a.id+');" class="btn btn-danger mx-1">Eliminar</button></div></td></tr>';
+            }  
+            retorno += '</table>';
+        }
+    });
+    return retorno;
+}
+
+function estadosOT(op){
+    if(op == 1){
+        return "Ingresada";
+    }
 }

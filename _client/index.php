@@ -84,7 +84,7 @@
     <div class="sidebar bg-gradient-primary">
       <img src="../assets/img/logo_blank.png" alt="" width="220">
       <a href="index.php">Nuevo</a>
-      <a href="#">Mis Pacientes</a>
+      <a href="#" onclick="menu(1);">Mis Ordenes de Trabajo</a>
       <a href="#">Mis Datos</a>
       <a href="#"></a>
       <a href="#"></a>
