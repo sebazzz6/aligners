@@ -1,5 +1,5 @@
 <?php
-	$servidor='localhost:3306';
+	$servidor='192.168.0.83:3306';
 	$usuario='innovali_adminInnova';
 	$pass='Innova@#2022';
 	$bd='innovali_innovaligners';

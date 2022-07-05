@@ -401,7 +401,7 @@ function addDBCliente(){
     var activo = "1";
     var nombres = document.getElementById("inNombreCliente").value;
     var apellidos = document.getElementById("inApellidoCliente").value;
-    var usuario = document.getElementById("inApellidoCliente").value;
+    var usuario = document.getElementById("inUsuarioCliente").value;
     var pass = document.getElementById("inPassCliente").value;
     var correo = document.getElementById("inCorreoCliente").value;
     var cargo = document.getElementById("selCargo").value;
