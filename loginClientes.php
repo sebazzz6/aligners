@@ -4,7 +4,7 @@
    if($_SERVER["REQUEST_METHOD"] == "POST") {
       $myusername = mysqli_real_escape_string($db,$_POST['username']);
       $mypassword = mysqli_real_escape_string($db,$_POST['password']); 
-      $sql = "SELECT * FROM tblusuarios WHERE usuario = '$myusername' and pass = '$mypassword'";
+      $sql = "SELECT * FROM tblclientes WHERE usuario = '$myusername' and pass = '$mypassword'";
       $result = mysqli_query($db,$sql);
       $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
       $active = $row['activo'];
@@ -14,33 +14,7 @@
       if($count == 1) {
          //session_register("myusername");
          $_SESSION['login_user'] = $myusername;
-         if($perfil == 1){
-            header("location:_admin/main.php"); 
-         }
-         //header("location: main.php");
-      }else {
-         $error = "Usuario o Pass erroneos";
-      }
-      if($count == 1) {
-         //session_register("myusername");
-         $_SESSION['login_user'] = $myusername;
-         if($perfil == 1){
-            header("location:_admin/index.php"); 
-         }
-         $_SESSION['login_user'] = $myusername;
-         if($perfil == 2){
-            header("location:_lab/index.php"); 
-         }
-         //header("location: main.php");
-      }else {
-         $error = "Usuario o Pass erroneos";
-      }
-      if($count == 1) {
-         //session_register("myusername");
-         $_SESSION['login_user'] = $myusername;
-         if($perfil == 5){
-            header("location:_client/index.html"); 
-         }
+         header("location:_client/index.php"); 
          //header("location: main.php");
       }else {
          $error = "Usuario o Pass erroneos";

@@ -3,29 +3,34 @@ function opciones(op){
     if(op == 1){
         document.getElementById("mainPanel").innerHTML = '';
         cadena += '<h2>Datos de Paciente</h2>'+
-        '<table class="table">'+
+        '<table class="table table-responsive">'+
         '<tr>'+
-            '<td>Nombres:</td><td><input></td><td>Apellidos:</td><td><input></td>'+
+            '<td>Nombres:</td><td><input id="otNombrePac"></td><td>Apellidos:</td><td><input id="otApellidoPac"></td>'+
         '</tr><tr>'+
-            '<td>Rut:</td><td><input></td><td>Fecha Nacimiento:</td><td><input type="date"></td>'+
+            '<td>Rut:</td><td><input id="otRutPac"></td><td>Fecha Nacimiento:</td><td><input type="date" id="otFnPac"></td>'+
         '</tr></table>'+
-        '<table class="table">'+
+        '<table class="table table-responsive">'+
         '<tr>'+
-            '<td colspan="2">Selecccione la(s) Arcada(s) para alineador(es):</td><td><input type="radio" id="sup" name="arcada"><label class="mx-2" for="sup">Superior</label></td><td><input type="radio" id="inf" name="arcada"><label class="mx-2" for="inf">Inferior</label></td><td><input type="radio" id="mor" name="arcada"><label class="mx-2" for="inf">Ambas</label></td>'+
+            '<td colspan="2">Selecccione la(s) Arcada(s) para alineador(es):</td>'+
+            '<td><input type="radio" id="otArcSup" value="1" name="arcada"><label class="mx-2" for="sup">Superior</label></td>'+
+            '<td><input type="radio" id="otArcInf" value="2" name="arcada"><label class="mx-2" for="inf">Inferior</label></td>'+
+            '<td><input type="radio" id="otArcAmb" value="3" name="arcada"><label class="mx-2" for="inf">Ambas</label></td>'+
         '</tr><table>'+
         '<h2>Orden de Alineador</h2>'+
         '<h4>Seleccione las indicaciones terapeuticas por arcada</h4>'+
-        '<table class="table">'+
+        '<table class="table table-responsive">'+
         '<tr>'+
-            '<td align="center">Máxilar Superior</td><td></td><td align="center">Mandíbula</td><td></td>'+
+            '<td colspan="2" align="center">Máxilar Superior</td><td colspan="2" align="center">Mandíbula</td>'+
         '</tr>'+
         '<tr>'+
-            '<td><input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">&nbsp;&nbsp;Alineación</td><td></td>'+
-            '<td><input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">&nbsp;&nbsp;Alineación</td><td></td>'+
+            '<td><input class="form-check-input" type="radio" id="check1" name="aliSup" value="1">&nbsp;&nbsp;Alineación Completa</td>'+
+            '<td><input class="form-check-input" type="radio" id="check1" name="aliSup" value="2">&nbsp;&nbsp;Alineación solo de 3 a 3</td>'+
+            '<td><input class="form-check-input" type="radio" id="check1" name="aliInf" value="1">&nbsp;&nbsp;Alineación Completa</td>'+
+            '<td><input class="form-check-input" type="radio" id="check1" name="aliInf" value="2">&nbsp;&nbsp;Alineación solo de 3 a 3</td>'+
         '</tr>'+
         '<tr>'+
-            '<td><input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">&nbsp;&nbsp;Nivelación</td><td></td>'+
-            '<td><input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">&nbsp;&nbsp;Nivelación</td><td></td>'+
+            '<td><input class="form-check-input" type="checkbox" id="nivSup" value="1">&nbsp;&nbsp;Nivelación</td><td></td>'+
+            '<td><input class="form-check-input" type="checkbox" id="nivInf" value="1">&nbsp;&nbsp;Nivelación</td><td></td>'+
         '</tr>'+
         '<tr>'+
             '<td><input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">&nbsp;&nbsp;Stripping entre dientes</td><td><input></td>'+
@@ -60,102 +65,8 @@ function opciones(op){
             '<td><input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">&nbsp;&nbsp;Cerrar Línea Media</td><td><input></td>'+
         '</tr>'+
         '</table>';
-                    /*'<div class="accordion-item">'+
-                        '<h2 class="accordion-header" id="headingOne">'+
-                            '<button class="accordion-button membrete-acordeon" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">'+
-                                'Datos de Paciente'+
-                            '</button>'+
-                        '</h2>'+
-                        '<div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">'+
-                            '<div class="accordion-body">'+
-                                '<table class="table">'+
-                                    '<tr>'+
-                                        '<td>Nombres:</td><td><input></td><td>Apellidos:</td><td><input></td>'+
-                                    '</tr><tr>'+
-                                        '<td>Rut:</td><td><input></td><td>Fecha Nacimiento:</td><td><input type="date"></td>'+
-                                    '</tr></table>'+
-                            '</div>'+
-                        '</div>'+
-                    '</div>'+
-                    '<div class="accordion-item">'+
-                        '<h2 class="accordion-header" id="headingOne">'+
-                            '<button class="accordion-button membrete-acordeon" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">'+
-                                'Imágenes'+
-                            '</button>'+
-                        '</h2>'+
-                        '<div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">'+
-                            '<div class="accordion-body">'+
-                                '<form method="post" action="codigo.php" enctype="multipart/form-data">'+
-                                    '<input type="file" name="archivo[]" id="archivo[]" multiple=""><br>'+
-                                    '<button type="submit">Enviar</button>'+
-                                '</form>'+
-                            '</div>'+
-                        '</div>'+
-                    '</div>'+
-                    '<div class="accordion-item">'+
-                        '<h2 class="accordion-header" id="headingTwo">'+
-                            '<button class="accordion-button membrete-acordeon" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">'+
-                                'Orden Para Estudio de Alineador'+
-                            '</button>'+
-                        '</h2>'+
-                        '<div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">'+
-                            '<div class="accordion-body">'+
-                            '<table class="table">'+
-                            '<tr>'+
-                                '<td colspan="2">Selecccione la(s) Arcada(s) para alineador(es):</td><td><input type="radio" id="sup" name="arcada"><label class="mx-2" for="sup">Superior</label></td><td><input type="radio" id="inf" name="arcada"><label class="mx-2" for="inf">Inferior</label></td><td><input type="radio" id="mor" name="arcada"><label class="mx-2" for="inf">Ambas</label></td>'+
-                            '</tr><table>'+
-                            '<h4>Seleccione las indicaciones terapeuticas por arcada</h4>'+
-                            '<table class="table">'+
-                            '<tr>'+
-                                '<td align="center">Máxilar Superior</td><td></td><td align="center">Mandíbula</td><td></td>'+
-                            '</tr>'+
-                            '<tr>'+
-                                '<td><input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">&nbsp;&nbsp;Alineación</td><td></td>'+
-                                '<td><input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">&nbsp;&nbsp;Alineación</td><td></td>'+
-                            '</tr>'+
-                            '<tr>'+
-                                '<td><input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">&nbsp;&nbsp;Nivelación</td><td></td>'+
-                                '<td><input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">&nbsp;&nbsp;Nivelación</td><td></td>'+
-                            '</tr>'+
-                            '<tr>'+
-                                '<td><input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">&nbsp;&nbsp;Stripping entre dientes</td><td><input></td>'+
-                                '<td><input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">&nbsp;&nbsp;Stripping entre dientes</td><td><input></td>'+
-                            '</tr>'+
-                            '<tr>'+
-                                '<td><input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">&nbsp;&nbsp;Expansión</td><td></td>'+
-                                '<td><input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">&nbsp;&nbsp;Expansión</td><td></td>'+
-                            '</tr>'+
-                            '<tr>'+
-                                '<td><input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">&nbsp;&nbsp;RetroInclinar o Retruir dientes</td><td><input></td>'+
-                                '<td><input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">&nbsp;&nbsp;RetroInclinar o Retruir dientes</td><td><input></td>'+
-                            '</tr>'+
-                            '<tr>'+
-                                '<td><input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">&nbsp;&nbsp;ProInclinar o Protruir dientes</td><td><input></td>'+
-                                '<td><input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">&nbsp;&nbsp;ProInclinar o Protruir dientes</td><td><input></td>'+
-                            '</tr>'+
-                            '<tr>'+
-                                '<td><input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">&nbsp;&nbsp;Extruir dientes</td><td><input></td>'+
-                                '<td><input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">&nbsp;&nbsp;Extruir dientes</td><td><input></td>'+
-                            '</tr>'+
-                            '<tr>'+
-                                '<td><input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">&nbsp;&nbsp;Intruir dientes</td><td><input></td>'+
-                                '<td><input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">&nbsp;&nbsp;Intruir dientes</td><td><input></td>'+
-                            '</tr>'+
-                            '<tr>'+
-                                '<td><input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">&nbsp;&nbsp;Cerrar Espacio entre dientes</td><td><input></td>'+
-                                '<td><input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">&nbsp;&nbsp;Cerrar Espacio entre dientes</td><td><input></td>'+
-                            '</tr>'+
-                            '<tr>'+
-                                '<td><input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">&nbsp;&nbsp;Cerrar Línea Media</td><td><input></td>'+
-                                '<td><input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">&nbsp;&nbsp;Cerrar Línea Media</td><td><input></td>'+
-                            '</tr>'+
-                            '</table>'+
-                            '<textarea placeholder="Observaciones"></textarea>'
-                            '</div>'+
-                        '</div>'+
-                    '</div>'+
-                '</div>';*/
-            cadena += '<div><button class="btn btn-danger">Enviar</button>11</div>';
+            cadena += '<textarea id="Observaciones" placeholder="Observaciones" rows="4" cols="50"></textarea><br/><br/>';
+            cadena += '<div><button class="btn btn-danger" onclick="grabarOT();">Enviar</button></div>';
             document.getElementById("mainPanel").innerHTML = cadena;
     }
     if(op == 2){
@@ -263,3 +174,50 @@ function calendario(){
         });
        });
 }
+
+function grabarOT(){
+    let arcSel = aliSup = aliInf = nivSup = nivInf = '0';
+    let usuario = document.getElementById("idUsuario").value;
+    let nombre = document.getElementById("otNombrePac").value;
+    let apellido = document.getElementById("otApellidoPac").value;
+    let rut = document.getElementById("otRutPac").value;
+    let fn = document.getElementById("otFnPac").value;
+    let tipoOt = "1";
+    //tipo arcada
+    var element = document.querySelector('input[name = "arcada"]:checked');
+    if(typeof(element) != 'undefined' && element != null){ arcSel = element.value; }
+
+    //tipo alineacion superior
+    var elementaliSup = document.querySelector('input[name = "aliSup"]:checked');
+    if(typeof(elementaliSup) != 'undefined' && elementaliSup != null){ aliSup = elementaliSup.value; }
+    //tipo alineacion inferior
+    var elementaliInf = document.querySelector('input[name = "aliInf"]:checked');
+    if(typeof(elementaliInf) != 'undefined' && elementaliInf != null){ aliInf = elementaliInf.value; }
+
+    //tipo nivelacion superior
+    var elementnivSup = document.querySelector('input[id = "nivSup"]:checked');
+    if(typeof(elementnivSup) != 'undefined' && elementnivSup != null){ nivSup = "1"; }
+    //tipo nivelacion inferior
+    var elementnivInf = document.querySelector('input[id = "nivInf"]:checked');
+    if(typeof(elementnivInf) != 'undefined' && elementnivInf != null){ nivInf = "1"; }
+    
+    
+    
+    console.log("Usuario: " + usuario);
+    console.log("Nombre: " + nombre);
+    console.log("Apellido: " + apellido);
+    console.log("Rut: " + rut);
+    console.log("Fecha Nacimiento: " + fn);
+    console.log("Tipo OT: " + tipoOt);
+    console.log("Arcada: " + arcSel);
+    console.log("Tipo Alineadcion Sup: " + aliSup);
+    console.log("Tipo Alineadcion Inf: " + aliInf);
+    console.log("Nivelacion Sup: " + nivSup);
+    console.log("Nivelacion Inf: " + nivInf);
+}
+
+
+
+
+
+//funciones habilitar inputs
