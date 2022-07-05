@@ -54,8 +54,9 @@
     $sql = "INSERT INTO tblot (usuarioIngreso, tipoOt, nombrePac, apellidoPac, rutPac, fechaNacPac, arc, alineacionSup, alineacionMan, nivelacionSup, nivelacionSupText, nivelacionInf, nivelacionInfText, strSup, strSupText, strInf, strInfText, expSup, expSupText, expInf, expInfText, rrdSup, rrdSupText, rrdInf, rrdInfText, ppdSup, ppdSupText, ppdInf, ppdInfText, extSup, extSupText, extInf, extInfText, intSup, intSupText, intInf, intInfText, cerrarEspSup, cerrarEspSupText, cerrarEspInf, cerrarEspInfText, cerrarLMSup, cerrarLMSupText, cerrarLMInf, cerrarLMInfText, obs, estado) VALUES ('$usuario','$tipoOt','$nombre','$apellido','$rut','$fn','$arcSel','$aliSup','$aliInf','$nivSup','$inpNivSup','$nivInf','$inpNivInf','$stripSup','$inpstripSup','$striInf','$inpStripInf','$expSup','$inpExpSup','$expInf','$inpExpInf','$rrdSup','$inpRrdSup','$rrdInf','$inpRrdInf','$ppdSup','$inpPpdSup','$ppdInf','$inpPpdInf','$extSup','$inpExpSup','$expInf','$inpExpInf','$intSup','$inpIntSup','$intInf','$inpIntInf','$ceeSup','$inpCeeSup','$ceeInf','$inpCeeInf','$clmSup','$inpClmSup','$clmInf','$inpClmInf','$obs','$estado')";
     //echo $sql;
     $result = mysqli_query($db, $sql);
+    $lastid = mysqli_insert_id($db); 
     if ($result){
-        echo "ok";
+        echo "ok,".$lastid;
     }else{
         echo "fail";
     } 

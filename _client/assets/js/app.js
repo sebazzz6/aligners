@@ -276,11 +276,13 @@ function grabarOT(){
         '&inpClmInf='+inpClmInf+'&obs='+obs,
         success: function (results) {
             console.log(results);
-            if(results == 'ok'){
+            var mensaje = results.split(",");
+            //console.log(mensaje);
+            if(mensaje[0] == 'ok'){
                 var opcion = confirm("Registro guardado Correctamente");
                 if(opcion == true){
-                    menu(1);
-                    //metodoPago();
+                    //menu(1);
+                    metodoPago(mensaje[1]);
                 }
             }else{
                 alert("No registrado....");
@@ -315,10 +317,34 @@ function grabarOT(){
     console.log("Obs: " + obs);
 }
 
-function metodoPago(){
+function metodoPago(registro){
     console.log("Metodo de pago");
+    document.getElementById("mainPanel").innerHTML = '';
+    var cadena = '<h3>Método de pago ('+registro+')</h3>';
+    cadena += '<table class="table" border="0"><tr><td><input name="mp" type="radio" value="1">  Cargo a Clínica (Quedara a la espera de que se confirme el pago)</td></tr><tr><td><input name="mp" type="radio" value="2">  Cargo a Paciente</td></tr></table>';
+    cadena += '<button class="btn btn-primary" onclick="enviarMP(\''+registro+'\');">Confirmar</button><button class="btn btn-danger mx-2">Cancelar</button>';
+    document.getElementById("mainPanel").innerHTML = cadena;
 }
 
+function enviarMP(ot){
+    let op = document.querySelector('input[name = "mp"]:checked').value;
+    $.ajax({ 
+        type: "GET",
+        async:false,
+        url: "../ajax/ot/mp.php?ot="+ot+"&op="+op,
+        success: function (results) {
+            retorno = results;
+        }
+    });
+    setTimeout(function(){ subirImg(ot); }, 1000);
+}
+
+function subirImg(ot){
+    console.log("Subir IMG");
+    document.getElementById("mainPanel").innerHTML = '';
+    var cadena = '<h3>Subir Imágenes Scan ('+ot+')</h3>';
+    document.getElementById("mainPanel").innerHTML = cadena;
+}
 
 function menu(op){
     var cadena = '';
